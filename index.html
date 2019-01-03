@@ -20,7 +20,7 @@
     </div>
     <div id="overview">
         <div id="main">
-            <movie-list></movie-list>
+            <movie-list v-bind:time="time" v-bind:genre="genre"></movie-list>
             <movie-filter @check-filter="checkFilterRoot"></movie-filter>
         </div>
     </div>
