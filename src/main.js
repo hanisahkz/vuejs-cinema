@@ -1,6 +1,10 @@
+// Dependencies
 import Vue from "vue";
 import "./style.scss";
+import VueResource from "vue-resource";
+Vue.use(VueResource);
 
+// Components
 import MovieList from "./components/MovieList.vue";
 import MovieFilter from "./components/MovieFilter.vue";
 
@@ -8,7 +12,8 @@ new Vue({
   el: "#app",
   data: {
     genre: [],
-    time: []
+    time: [],
+    movies: []
   },
   methods: {
     // All of the data here obtained from onClick event from the child component and being passed to the parent
@@ -30,5 +35,11 @@ new Vue({
   components: {
     MovieList,
     MovieFilter
+  },
+  created() {
+    this.$http.get("/api").then(response => {
+      // response.data contains the seeded movie data
+      this.movies = response.data;
+    });
   }
 });

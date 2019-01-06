@@ -46,6 +46,7 @@ function cleanData(movie) {
 
 module.exports = {
   data: [],
+  // TODO: find out more about this method
   getData(callback) {
     if (!this.data.length) {
       let ids = process.env.IMDB_IDS.split(',');
