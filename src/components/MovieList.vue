@@ -1,27 +1,26 @@
 <template>
   <div id="movie-list">
-      <div v-if="filteredMovies.length">
-        <!-- We'll be passing filtered movie object to movie-item via prop -->
-        <movie-item v-for="movie in filteredMovies" v-bind:movie="movie.movie"/>
-      </div>
-      <!-- When data loaded from server, movies will have length -->
-      <div v-else-if="movies.length" class="no-results">
-          No results found.
-      </div>
-      <div v-else class="no-reulsts">
-          Loading...
-      </div>
-    
+    <div v-if="filteredMovies.length">
+      <!-- We'll be passing filtered movie object to movie-item via prop -->
+      <movie-item
+        v-for="movie in filteredMovies"
+        v-bind:movie="movie.movie"
+        v-bind:sessions="movie.sessions"
+        v-bind:day="day"
+      />
+    </div>
+    <!-- When data loaded from server, movies will have length -->
+    <div v-else-if="movies.length" class="no-results">No results found.</div>
+    <div v-else class="no-reulsts">Loading...</div>
   </div>
 </template>
 
 <script>
 import genres from "../util/genres";
 import MovieItem from "./MovieItem.vue";
-import { rejects } from "assert";
 
 export default {
-  props: ["genre", "time", "movies"],
+  props: ["genre", "time", "movies", "day"],
   methods: {
     // Callback function that accepts movie argument
     moviePassesGenreFilter(movie) {

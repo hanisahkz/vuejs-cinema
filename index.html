@@ -21,7 +21,7 @@
     <div id="overview">
         <div id="main">
             <!-- These are data passed from parent to child via props v-bind:prop-name-specified-in-child-component="javascript-argument-that-is-data-from-parent" -->
-            <movie-list v-bind:time="time" v-bind:genre="genre" v-bind:movies="movies"></movie-list>
+            <movie-list v-bind:time="time" v-bind:genre="genre" v-bind:movies="movies" v-bind:day="day"></movie-list>
             <movie-filter @check-filter="checkFilterRoot"></movie-filter>
         </div>
     </div>
