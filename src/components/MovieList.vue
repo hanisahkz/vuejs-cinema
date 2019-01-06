@@ -1,7 +1,7 @@
 <template>
   <div id="movie-list">
     <!-- We'll be passing filtered movie object to movie-item via prop -->
-    <movie-item v-for="movie in filteredMovies" class="movie" v-bind:movie="movie.movie"/>
+    <movie-item v-for="movie in filteredMovies" v-bind:movie="movie.movie"/>
   </div>
 </template>
 
