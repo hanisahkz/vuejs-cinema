@@ -8,6 +8,7 @@
 <script>
 import genres from "../util/genres";
 import MovieItem from "./MovieItem.vue";
+import { rejects } from "assert";
 
 export default {
   props: ["genre", "time", "movies"],
@@ -18,9 +19,20 @@ export default {
       if (!this.genre.length) {
         return true;
       } else {
-        // If genre is being checked, compare the genre being checked against the genre of movies present and return appropriate boolean value
-        // this is using Array#find()
-        return this.genre.find(genre => movie.genre === genre);
+        // Logic has to be update based on how data are structured in api_sample.json:
+        // i) movie.movie.Genre, ii) movie.movie.Genre has more than 1 entry separated by ','
+        let movieGenres = movie.movie.Genre.split(", ");
+        let matched = true;
+
+        // Array#forEach to iterate over the checking
+        this.genre.forEach(genre => {
+          // Check whether the genre checked is present in movieGenres array belong to the dataset
+          // If the genre(s) checked don't match anything, ie returns -1, then return false i.e don't return anything
+          if (movieGenres.indexOf(genre) === -1) {
+            matched = false;
+          }
+        });
+        return matched;
       }
     }
   },
@@ -34,7 +46,7 @@ export default {
     }
   },
   components: {
-      MovieItem
+    MovieItem
   }
 };
 </script>
