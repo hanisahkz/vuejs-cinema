@@ -1,7 +1,17 @@
 <template>
   <div id="movie-list">
-    <!-- We'll be passing filtered movie object to movie-item via prop -->
-    <movie-item v-for="movie in filteredMovies" v-bind:movie="movie.movie"/>
+      <div v-if="filteredMovies.length">
+        <!-- We'll be passing filtered movie object to movie-item via prop -->
+        <movie-item v-for="movie in filteredMovies" v-bind:movie="movie.movie"/>
+      </div>
+      <!-- When data loaded from server, movies will have length -->
+      <div v-else-if="movies.length" class="no-results">
+          No results found.
+      </div>
+      <div v-else class="no-reulsts">
+          Loading...
+      </div>
+    
   </div>
 </template>
 
